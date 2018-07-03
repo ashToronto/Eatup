@@ -2,6 +2,7 @@ import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 
 
+
 class Swipes extends React.Component {
 
  constructor(props){
@@ -9,9 +10,13 @@ class Swipes extends React.Component {
 
  }
 
+ loggedState(e) {
+  console.log(e)
+ }
+
  render (){
    return(
-    <SwipeableViews enableMouseEvents>
+    <SwipeableViews enableMouseEvents onChangeIndex={this.loggedState}>
 
      {this.props.data.map((restaurant, i) => (
        <div>
@@ -20,7 +25,8 @@ class Swipes extends React.Component {
          <h5>Phone: {restaurant.phone}</h5>
          <h5>Price: {restaurant.money}</h5>
          <h5>Rating: {restaurant.rating}</h5>
-         <img src={restaurant.image} alt={restaurant.name}/>
+         <img className="photo" src={restaurant.image} alt={restaurant.name}/>
+
        </div>
 
      ))}

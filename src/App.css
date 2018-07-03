@@ -22,6 +22,25 @@
   font-size: large;
 }
 
+.photo {
+  width:350px;
+  height:350px;
+}
+
+.ToggleButton {
+  border-color:black;
+  border-width: 5px;
+}
+
+.registration {
+  width:400px;
+  height:400px;
+}
+
+.eventList {
+
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

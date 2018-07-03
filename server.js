@@ -19,6 +19,21 @@ app.post('/users/:username/:email/:password', (req, res) => {
   console.log(password)
 });
 
+app.post('/events/:eventName/:restaurantName/:restaurantAddress/:description/:start/:end', (req, res) => {
+  const eventName = req.params.eventName
+  const restaurantName = req.params.restaurantName
+  const restaurantAddress = req.params.restaurantAddress
+  const description = req.params.description
+  const start = req.params.start
+  const end = req.params.end
+  console.log(eventName)
+  console.log(start)
+  console.log(end)
+  console.log(description)
+  console.log(restaurantName)
+  console.log(restaurantAddress)
+})
+
 app.post('/api/search/:category/:radius/:latitude/:longitude', (req, res) => {
   const category = req.params.category
   const radius = req.params.radius
@@ -26,16 +41,18 @@ app.post('/api/search/:category/:radius/:latitude/:longitude', (req, res) => {
   const longitude = req.params.longitude
   console.log(latitude)
   console.log(longitude)
+  console.log(category)
   client.search({
     latitude: latitude,
     longitude: longitude,
     categories: category,
     radius: radius
+
   }).then(response => {
  // console.log(response.jsonBody.businesses)
-
+console.log(category)
  const businesses = response.jsonBody.businesses
-     console.log(businesses)
+     // console.log(businesses)
      const restaurantData = [];
 
      businesses.map(business => {
