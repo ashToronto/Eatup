@@ -50,7 +50,7 @@ app.post('/api/search/:category/:radius/:latitude/:longitude', (req, res) => {
 
   }).then(response => {
  // console.log(response.jsonBody.businesses)
-console.log(category)
+
  const businesses = response.jsonBody.businesses
      // console.log(businesses)
      const restaurantData = [];

@@ -18,11 +18,11 @@ render() {
 
   return (
 
-    <div>
-    <h5>Nolan's 28th Birthday</h5>
-    <h5>Restaurant</h5>
-    <h5>An event to end all events</h5>
-    <h5>May 1st 12:00 to May 1st 12:01</h5>
+    <div className="eventList">
+    <p>Nolan's 28th Birthday</p>
+    <p>Restaurant</p>
+    <p>An event to end all events</p>
+    <p>May 1st 12:00 to May 1st 12:01</p>
     <ul>
     <li>Nolan</li>
     </ul>

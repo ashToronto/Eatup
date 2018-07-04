@@ -10,16 +10,14 @@ class Swipes extends React.Component {
 
  }
 
- loggedState(e) {
-  console.log(e)
- }
+
 
  render (){
    return(
-    <SwipeableViews enableMouseEvents onChangeIndex={this.loggedState}>
+    <SwipeableViews enableMouseEvents onChangeIndex={this.props.getEventRestaurant}  >
 
      {this.props.data.map((restaurant, i) => (
-       <div>
+       <div className="swipeCardInside">
          <h5>{restaurant.name}</h5>
          <h5>{restaurant.address}</h5>
          <h5>Phone: {restaurant.phone}</h5>

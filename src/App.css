@@ -27,6 +27,11 @@
   height:350px;
 }
 
+.form {
+  margin-top: 10px;
+
+}
+
 .ToggleButton {
   border-color:black;
   border-width: 5px;
@@ -38,8 +43,18 @@
 }
 
 .eventList {
-
+ height: 150px;
+ width: 250px;
+ font-size: 5px;
+ text-align: center;
 }
+
+.react-datetime-picker__clock {
+  display:none;
+  }
+
+
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
