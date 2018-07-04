@@ -19,6 +19,7 @@ render() {
    <ul>
    <li>Nolan</li>
    </ul>
+   <button>Join Event</button>
   <button>Leave Event</button>
    </div>
 

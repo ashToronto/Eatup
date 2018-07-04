@@ -126,8 +126,7 @@ getUserInput = (e) => {
         latitude: this.state.latitude,
         longitude: this.state.longitude,
         category: e.target.category.value,
-        radius: e.target.radius.value
-      })
+         })
     })
     .then(res => res.json())
     .then(data => {
@@ -204,7 +203,7 @@ getUserInput = (e) => {
                 </Modal>
               </div>
           </header>
-          <div classname="Geo-finder">
+          <div className="Geo-finder">
             {this.geoFindMe()}
           </div>
 

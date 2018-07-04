@@ -2,6 +2,7 @@ const express = require('express');
 const yelp = require('yelp-fusion');
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const SocketServer = require('ws').Server;
 const client = yelp.client("hxp7yqGWKyaIvgLRT0d4946GZRAKUxCTJy3mHGG0Es-UpLfc71F-BAWXWwFOLipfLZTPIUf3qw3cB8HXndgyok_pkQhW19SUaU0d72IDXrzqtOJRd1UMpfn4byg1W3Yx");
 const app = express();
 const cookieSession = require('cookie-session')
@@ -14,6 +15,25 @@ const environment = process.env.NODE_ENV || 'development';
 require('dotenv').config();
 const configuration = require('./knexfile')[environment];    // require environment's settings from knexfile
 const knex = require('knex')(configuration);
+
+
+
+
+
+
+
+
+// Create the WebSockets server
+const wss = new SocketServer({ port: 3003 });
+
+wss.on('connection', (ws) => {
+  console.log('Client connected');
+  // Set up a callback for when a client closes the socket. This usually means they closed their browser.
+  ws.on('close', () => console.log('Client disconnected'));
+});
+
+
+
 
 
 
