@@ -10,6 +10,7 @@ import Registration from './components/registration'
 import Swipes from './components/swipes.jsx'
 import EventList from './components/event_list'
 import EventCurrent from './components/event_current'
+import Login from './components/login'
 
 
 class App extends Component {
@@ -21,13 +22,15 @@ constructor(props) {
       radius: 0,
       latitude: 0,
       longitude: 0,
-      isModalOpen: false,
+      isRegistrationModalOpen: false,
+      isLoginModalOpen: false,
       username: '',
       email: '',
       password: '',
       users: [],
       create: false,
       events: [],
+      currentUser: null,
       currentEventUser:[],
       eventRestaurant: null,
       eventName: '',
@@ -37,21 +40,33 @@ constructor(props) {
   };
 }
 
-getRegistration(e) {
-  console.log(e.target.username.value)
-  e.preventDefault();
-  this.setState({
-    username: e.target.username.value,
-    email: e.target.email.value,
-    password: e.target.password.value,
-    isModalOpen: false
-  });
-  // User Registration form data
-    fetch(`http://localhost:8080/users/${e.target.username.value}/${e.target.email.value}/${e.target.password.value}`, {
+getLogout() {
+    console.log('logging out')
+     // Here we are doing a post to the logout route in the server
+    fetch(`/users/logout`, {
       method: "POST",
       headers: {
         'Content-type': 'application/json'
       },
+      credentials: 'include',
+    })
+    .then(() => {
+      this.setState({currentUser: null});
+      // If the session is successfully removed then set this.state.currentUser to null
+    })
+    .catch(err => console.log(err))
+
+  };
+
+  getLogin(e) {
+    console.log('logging in')
+    e.preventDefault();
+    fetch(`/users/login`, {
+      method: "POST",
+      headers: {
+        'Content-type': 'application/json'
+      },
+      credentials: 'include',
       body: JSON.stringify({
         username: e.target.username.value,
         email: e.target.email.value,
@@ -60,11 +75,75 @@ getRegistration(e) {
     })
     .then(res => res.json())
     .then(data => {
-      this.setState({ users: data})
-      console.log(data)
+      this.setState({ currentUser: data})
+      console.log('App.jsx current user', data)
+    })
+    .catch(err => console.log(err))
+
+  };
+
+
+// getRegistration(e) {
+//   console.log(e.target.username.value)
+//   e.preventDefault();
+//   this.setState({
+//     username: e.target.username.value,
+//     email: e.target.email.value,
+//     password: e.target.password.value,
+//     isModalOpen: false
+//   });
+//   // User Registration form data
+//     fetch(`http://localhost:8080/users/${e.target.username.value}/${e.target.email.value}/${e.target.password.value}`, {
+//       method: "POST",
+//       headers: {
+//         'Content-type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         username: e.target.username.value,
+//         email: e.target.email.value,
+//         password: e.target.password.value,
+//       })
+//     })
+//     .then(res => res.json())
+//     .then(data => {
+//       this.setState({ users: data})
+//       console.log(data)
+//     })
+//     .catch(err => console.log(err))
+//   };
+
+
+getRegistration(e) {
+    e.preventDefault();
+    this.setState({
+      username: e.target.username.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+      isRegistrationModalOpen: false
+    });
+
+  // User Registration form data
+    fetch(`/users/register`, {
+      method: "POST",
+      headers: {
+        'Content-type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        username: e.target.username.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      this.setState({ currentUser: data})
+      console.log('App.jsx current user', data)
     })
     .catch(err => console.log(err))
   };
+
+
 
   componentDidMount() {
 
@@ -160,13 +239,22 @@ getUserInput = (e) => {
   }
 
 // Login pop-up
- openModal() {
-      this.setState({ isModalOpen: true })
+  openRegistrationModal() {
+      this.setState({ isRegistrationModalOpen: true })
     }
 
-    closeModal() {
-      this.setState({ isModalOpen: false })
+    openLoginModal() {
+      this.setState({ isLoginModalOpen: true })
     }
+
+  closeRegistrationModal() {
+    this.setState({ isRegistrationModalOpen: false })
+  }
+
+  closeLoginModal() {
+    this.setState({ isLoginModalOpen: false })
+  }
+
 
     handleEventClick = () => {
    console.log('clicked')
@@ -186,21 +274,34 @@ getUserInput = (e) => {
     return (
       <div className="Eat-Up">
 
+       {this.state.currentUser && <div>Logged in as {this.state.currentUser.email}</div>}
+
+
           <header className="App-header">
             <h1 className="App-title">Eat-up</h1>
 
               <div>
-                <button onClick={() => this.openModal()}>Registration</button>
-                <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
-                  <Registration getRegistration = {(e)=>this.getRegistration(e)}/>
-                  <p><button onClick={() => this.closeModal()}>Close</button></p>
+                <button onClick={() => this.openRegistrationModal()}>Registration</button>
+                <Modal isOpen={this.state.isRegistrationModalOpen} onClose={() => this.closeRegistrationModal()}>
+                <p style={{color: 'black'}}>Registration</p>
+                  <Registration getRegistration={(e)=>this.getRegistration(e)}/>
+                  <p><button onClick={() => this.closeRegistrationModal()}>Close</button></p>
+                </Modal>
+              </div>
+
+              <br></br>
+
+              <div>
+                <button onClick={() => this.openLoginModal()}>Login</button>
+                <Modal isOpen={this.state.isLoginModalOpen} onClose={() => this.closeLoginModal()}>
+                  <p style={{color: 'black'}}>Log in</p>
+                  <Login getLogin={(e)=>this.getLogin(e)}/>
+                   <p><button onClick={() => this.closeLoginModal()}>Close</button></p>
                 </Modal>
               </div>
               <br></br>
               <div>
-                <button onClick={() => this.openModal()}>Login</button>
-                <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
-                </Modal>
+              <button onClick={(e)=>this.getLogout(e)}>Logout</button>
               </div>
           </header>
           <div className="Geo-finder">
