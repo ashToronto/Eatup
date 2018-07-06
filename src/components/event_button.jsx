@@ -15,8 +15,10 @@ class ToggleButton extends React.Component {
    }
 
    return (
-     <div onClick={this.props.handleClick}>
+    <div>
+     <button onClick={this.props.handleClick}>
        {text}
+       </button>
      </div>
    );
  }

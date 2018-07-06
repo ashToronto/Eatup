@@ -2,6 +2,7 @@ const express = require('express');
 const yelp = require('yelp-fusion');
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const SocketServer = require('ws').Server;
 const client = yelp.client("hxp7yqGWKyaIvgLRT0d4946GZRAKUxCTJy3mHGG0Es-UpLfc71F-BAWXWwFOLipfLZTPIUf3qw3cB8HXndgyok_pkQhW19SUaU0d72IDXrzqtOJRd1UMpfn4byg1W3Yx");
 const app = express();
 const cookieSession = require('cookie-session')
@@ -22,6 +23,102 @@ const knex = require('knex')(configuration);
 
 
 
+// Create the WebSockets server
+// const wss = new SocketServer({ port: 3001 });
+
+
+
+
+
+
+// wss.on('connection', (ws) => {
+//   console.log('Client connected');
+//   users = {
+//     type: "userCount",
+//     userCount: wss.clients.size
+//   };
+//   console.log(users)
+//   wss.clients.forEach(client => {
+//     client.send(JSON.stringify(users));
+//   });
+
+//   wss.clients.forEach(client => {
+//       client.send(JSON.stringify(wss.clients.size));
+//     })
+//   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
+//   ws.on('close', () => console.log('Client disconnected'));
+//   users = {
+//        type: "userCount",
+//        userCount: wss.clients.size
+//      };
+//      wss.clients.forEach(client => {
+//       client.send(JSON.stringify(users));
+//      });
+// });
+
+
+
+
+//  wss.on('leave', (ws) => {
+//   users = {
+//     type: "userCountEvent",
+//     userCount: wss.clients.size
+//   };
+//   wss.clients.forEach(client => {
+//       client.send(JSON.stringify(wss.clients.size));
+//     })
+//  });
+
+
+
+
+
+
+
+
+
+
+
+// wss.on('connection', (ws) => {
+//   console.log('connecting');
+
+//   ws.on('message', message => {
+//     // Go to database
+//     // add new person to event
+//     // send back new event data over the socket
+
+//     console.log('Event Joined');
+//     const payload = {
+//       type: "userIncrease",
+//       userCount: wss.clients.size
+//     }
+
+//     wss.clients.forEach(client => {
+//       console.log('PAYLOAD', payload);
+//       client.send(JSON.stringify(payload));
+//     })
+//   });
+// });
+
+
+
+
+
+app.use(cors());
+app.use(bodyParser.json())
+
+const port = process.env.PORT || 8080;
+
+
+//returns all the current events in the db
+app.get('/events', (req, res) => {
+  knex.select("*")
+  .from("events")
+  .then(eventList => {
+    console.log(eventList)
+     res.json(eventList)
+   })
+});
 
 
 
@@ -148,7 +245,7 @@ app.post('/events/:eventName/:restaurantName/:restaurantAddress/:description/:st
  const description = req.params.description
  const start = req.params.start
  const end = req.params.end
- knex('events')
+ const id = knex('events')
  .returning('id')
  .insert([{
    event_name: req.params.eventName,
@@ -157,12 +254,16 @@ app.post('/events/:eventName/:restaurantName/:restaurantAddress/:description/:st
    description: req.params.description,
    event_start: req.params.start,
    event_end: req.params.end
- }])
- .then(function() {
-   console.log("worked")
- })
- .catch(function(error) {
-   console.error("Error:",error);
+}]).then((data) => {
+    knex.select('*')
+   .from('events')
+   .where('id', '=', data[0])
+   .then(results => {
+     console.log(results)
+     res.json(results)
+   })
+
+  console.log('DATA', data);
  });
 });
 
