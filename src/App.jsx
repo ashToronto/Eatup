@@ -255,7 +255,7 @@ handleEventClick = () => {
 
 
   render() {
-
+    {this.geoFindMe()}
 
     return (
       <body>
@@ -266,10 +266,10 @@ handleEventClick = () => {
          </a>
           <div class="toolbar">
            <button class="btn btn--primary">Preferences</button>
-            {this.state.currentUser && <div>Logged in as {this.state.currentUser.email}</div>}
+            {this.state.currentUser && <div>Logged in as {this.state.currentUser.username}</div>}
           <div>
             {!this.state.loggedin === true &&<button onClick={() => this.openRegistrationModal()}>Registration</button>}
-             <Modal isOpen={this.state.isRegistrationModalOpen} onClose={() => this.closeRegistrationModal()}>
+             <Modal  isOpen={this.state.isRegistrationModalOpen} onClose={() => this.closeRegistrationModal()}>
               <p style={{color: 'black'}}>Registration</p>
                <Registration getRegistration={(e)=>this.getRegistration(e)}/>
                 <p><button onClick={() => this.closeRegistrationModal()}>Close</button></p>
@@ -288,22 +288,21 @@ handleEventClick = () => {
               {this.state.loggedin === true &&<button onClick={(e)=>this.getLogout(e)}>Logout</button>}
           </div>
         </header>
-         <div className="Geo-finder">
-           {this.geoFindMe()}
-         </div>
           <nav class="admin__nav">
            <div className="eventList">
             <EventList dbEventList={this.state.dbEventList}/>
            </div>
           </nav>
-           <main class="admin__main">
-            <div class="dashboard__item dashboard__item--full">
-             <div class="card">
-              <div class="swipe__card">
-               <div class="profile">
-                <div>
+           <main className="admin__main">
+            <div className="dashboard__item dashboard__item--full">
+
+               <div >
                  {!this.state.category && <Form getUserInput = {this.getUserInput}/>}
                 </div>
+
+
+               <div class="profile">
+
                  <div>
                   {this.state.create && !this.state.eventName && <Event getEventInput = {(e) => this.getEventInput(e)} restaurant = {this.state.eventRestaurant}/>}
                  </div>
@@ -317,8 +316,7 @@ handleEventClick = () => {
                      {this.state.category && this.state.currentUser && <ToggleButton create={this.state.create} currentUser={this.state.currentUser.username} handleClick={this.handleEventClick}/>}
                     </div>
                     </div>
-                   </div>
-                  </div>
+
                  </div>
                </main>
               </div>

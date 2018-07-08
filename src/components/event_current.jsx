@@ -18,7 +18,8 @@ class EventCurrent extends React.Component {
         <h5>{this.props.events.restaurant_name}</h5>
         <h5>{this.props.events.restaurant_address}</h5>
         <h5>{this.props.events.description}</h5>
-        <h5>{this.props.events.event_start} to {this.props.events.event_end}</h5>
+        <h5>{this.props.events.event_start}</h5>
+        <h5>{this.props.events.event_end}</h5>
         <h5>People Going:</h5>
         <ul>
           <li>{this.props.currentUser}</li>

@@ -4,9 +4,6 @@
   box-sizing: border-box;
 }
 
-.react-datetime-picker__clock {
- display:none;
- }
 
 
 body {
@@ -14,14 +11,16 @@ body {
   overflow-x: hidden;
 }
 .admin {
+  height: 100%;
   --spacing: 1rem;
   display: flex;
   flex-wrap: wrap;
   display: grid;
   height: 100vh;
-  grid-template-rows: 70px 1fr 70px;
-  grid-template-columns: 250px 1fr;
+  background-image: url("/public/images/images-1.jpg");
+  grid-template-columns: 300px 1fr;
   grid-template-areas: "header header" "nav    main" "footer footer";
+
 }
 .admin__header {
   display: flex;
@@ -33,11 +32,16 @@ body {
   position: relative;
 }
 .admin__nav {
-  flex: 0 0 250px;
+  flex: 0 0 300px;
   grid-area: nav;
-  background-color: #313541;
+  background-image: url("/public/images/images-1.jpg");
+  background-color: grey;
+  overflow: scroll;
 }
 .admin__main {
+  max-height: 100%;
+  background-color: #e7e7e7;
+  background-image: url(/public/images/sidenav.png);
   flex: 1;
   grid-area: main;
   padding: var(--spacing);
@@ -49,12 +53,13 @@ body {
 .swipe__card {
   position: relative;
   max-width: 1200px;
+  height: 525px;
 }
-.swipe__card:after {
+/*.swipe__card:after {
   content: "";
   display: block;
   padding-bottom: 100%;
-}
+}*/
 .content {
   position: absolute;
   width: 100%;
@@ -115,13 +120,10 @@ a {
   color: #dc5a60;
   text-decoration: none;
 }
-img {
-  max-width: 100%;
-  height: auto;
-}
+
 .logo {
   display: flex;
-  flex: 0 0 250px;
+  flex: 0 0 300px;
   height: 70px;
   justify-content: center;
   align-items: center;
@@ -159,11 +161,10 @@ img {
   background-color: #1f222d;
 }
 .card {
-  height: 100%;
+  height: 200%;
   padding: 1rem;
-  font-size: 2rem;
-  font-weight: 300;
-  background-color: #fff;
+    font-weight: 300;
+  background-color: gray;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -179,10 +180,18 @@ img {
   background-color: #56bf89;
 }
 .profile {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 500px;
-  margin: auto;
-  text-align: left;
+  /*box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);*/
+  width:46%;
+  height: 40%;
+  background-color: #ffff;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+
+  border-radius: 15px;
+
+  overflow: scroll;
 }
 .profile h3 {
   font-family: 'Quicksand', sans-serif;
@@ -191,6 +200,84 @@ img {
   color: grey;
   font-size: 18px;
 }
+
+.react-datetime-picker__clock {
+ display:none;
+ }
+
+ .eventCards {
+  height:190px;
+  background-color: white;
+  font-size: 10px;
+  text-align: center;
+  line-height:12px;
+  width: 80%;
+  margin: auto;
+  border-radius: 15px;
+  /*padding: 3px;*/
+
+ }
+
+
+ .photo {
+  max-width:100%;
+  height:400px;
+  height
+  display: block;
+ /* margin-left: 0px;
+  margin-right: 5px;
+*/
+
+}
+
+.photo img{
+height:100%;
+width:100%;
+}
+
+
+
+.restInfo {
+  width:80%;
+
+  text-align: left;
+  margin-left:auto;
+  margin-right:auto;
+
+}
+
+.getRestaurant {
+  text-align: center;
+  margin-top: 250px;
+
+}
+
+.foodtype {
+  height:70px;
+  font-size: 40px;
+  padding: 10px;
+  width: 55%;
+}
+
+.distance {
+  display:inline-block;
+  height:70px;
+  width:110px ;
+  font-size: 20px;
+  margin-bottom:5px;
+}
+
+.restCard {
+height:750px;
+}
+
+ .modal {
+  top:400px;
+  margin-left: 50%;
+ }
+
+
+
 /* button {
   border: none;
   outline: 0;

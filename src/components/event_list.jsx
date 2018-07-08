@@ -48,21 +48,22 @@ render() {
 
     return (
       <div>
-      <h2>Current Events You Can Join!</h2>
        { this.props.dbEventList.map((event, idx) => {
           return (
-           <div key={idx}>
-            <h3>{event.event_name}</h3>
-            <h4>{event.restaurant_name}</h4>
-            <h5>{event.restaurant_address}</h5>
-            <h6>{event.description}</h6>
-            <h6>Start:{event.event_start} End:{event.event_end}</h6>
+           <div className="eventCards" key={idx}>
+            <p>{event.event_name}</p>
+            <p>{event.restaurant_name}</p>
+            <p>{event.restaurant_address}</p>
+            <p>{event.description}</p>
+            <p>Start:{event.event_start}</p>
+            <p>End:{event.event_end}</p>
             <button>Join Event</button>
             <button>Leave Event</button>
            </div>
            )})
         }
       </div>
+
     );
   }
 }
