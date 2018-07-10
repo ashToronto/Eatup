@@ -17,14 +17,20 @@ render (){
     {this.props.data.map((restaurant, i) => (
       <div className="restCard">
       <div className="photo" >
-       <img src={restaurant.image} alt="./public/images/image-not-found.jpg"/>
+       <img src={restaurant.image} alt="NotFound"/>
+       <div className="overlap">
+       <h2 className="rating">{restaurant.rating}</h2>
+       </div>
       </div>
        <div className="restInfo">
-        <h5>{restaurant.name}</h5>
-        <h5>{restaurant.address}</h5>
-        <h5>Phone: {restaurant.phone}</h5>
-        <h5>Price: {restaurant.money}</h5>
-        <h5>Rating: {restaurant.rating}</h5>
+        <h2>{restaurant.name}</h2>
+        <h3>{restaurant.address}</h3>
+        <h3>{restaurant.city} , {restaurant.state}   {restaurant.country} </h3>
+        <h5>{restaurant.phone}</h5>
+        <div className="price">
+        <h5>{restaurant.money}</h5>
+        </div>
+        <p className="addressString">{restaurant.addressString}</p>
       </div>
       </div>
 

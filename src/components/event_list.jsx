@@ -1,6 +1,6 @@
 import React from 'react';
 import UserCount from "./user_count"
-
+import Collapsible from 'react-collapsible';
 
 class EventList extends React.Component {
 
@@ -8,6 +8,7 @@ constructor(props){
   super(props);
   this.state = {
     activeEventUsers:null,
+    open: false,
   }
 }
 
@@ -26,7 +27,6 @@ componentDidMount() {
 }
 
 
-
 // handleUserCount = (e) => {
 //   const newUserCount = {activeEventUsers:this.state.activeEventUsers, type: "userIncrease"};
 //   console.log('Event', e);
@@ -43,23 +43,46 @@ componentDidMount() {
 
 // {this.props.events.map((event, i) => (
 
+
+handleClick = () => {
+  if(this.state.open) {
+      this.setState({
+        open: false,
+
+      });
+    }else{
+      this.setState({
+        open: true,
+
+      });
+    }
+  }
+
+
+
+
 render() {
-    console.log('event_listdata', this.props.dbEventList)
+    // console.log('event_listdata', this.props.dbEventList)
 
     return (
-      <div>
+    <div>
        { this.props.dbEventList.map((event, idx) => {
           return (
-           <div className="eventCards" key={idx}>
-            <p>{event.event_name}</p>
-            <p>{event.restaurant_name}</p>
+
+            <Collapsible trigger={<h1>{event.event_name}</h1>} key={idx}>
+            <div>
+            <h4>{event.restaurant_name}</h4>
             <p>{event.restaurant_address}</p>
+            <h5>Start</h5>
+            <p>{event.event_start}</p>
+            <h5>End</h5>
+            <p>{event.event_end}</p>
             <p>{event.description}</p>
-            <p>Start:{event.event_start}</p>
-            <p>End:{event.event_end}</p>
             <button>Join Event</button>
             <button>Leave Event</button>
-           </div>
+            </div>
+            </Collapsible>
+
            )})
         }
       </div>

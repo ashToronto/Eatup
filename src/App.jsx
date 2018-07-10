@@ -11,7 +11,11 @@ import Swipes from './components/swipes.jsx'
 import EventList from './components/event_list'
 import EventCurrent from './components/event_current'
 import Login from './components/login'
-
+// import SideNav from './images/sidenav.png'
+import SideNav from './images/sidenav7.jpg'
+import MainNav from './images/mainnav.jpeg'
+import Logo from './images/logo1.jpg'
+import NotFound from './images/notfound.jpg'
 
 class App extends Component {
 constructor(props) {
@@ -39,8 +43,14 @@ constructor(props) {
       end: 0,
       loggedin: false,
       dbEventList: [],
+      address:'',
+      city:'',
+      state:'',
+      country:'',
   };
 }
+
+
 
 getLogout() {
     console.log('logging out')
@@ -142,7 +152,11 @@ getRegistration(e) {
        description: e.target.description.value,
        start: e.target.start.value,
        end: e.target.end.value,
-       restaurantAddress: e.target.restaurantAddress.value
+       restaurantAddress: e.target.restaurantAddress.value,
+       // address: e.target.address.value,
+       // city: e.target.city.value,
+       // state: e.target.state.value,
+       // country: e.target.country.value
      })
 
    fetch(`http://localhost:8080/events/${e.target.eventName.value}/${e.target.restaurantName.value}/${e.target.restaurantAddress.value}/${e.target.description.value}/${e.target.start.value}/${e.target.end.value}` , {
@@ -249,8 +263,14 @@ handleEventClick = () => {
  handleGetSwipeIndex = (n) => {
    console.log('event clicked', n)
    this.setState({
-     eventRestaurant:this.state.data[n]
+     eventRestaurant:this.state.data[n],
+     address:this.state.data[n].address,
+     city:this.state.data[n].city,
+     state:this.state.data[n].state,
+     country:this.state.data[n].country
    })
+   console.log('state', this.state.data)
+   console.log('address', this.state.data[n].address)
  }
 
 
@@ -261,39 +281,42 @@ handleEventClick = () => {
       <body>
        <div class="admin">
         <header class="admin__header">
-         <a href="#" class="logo">
-          <h1>Profiles</h1>
+         <a className="brand">
+         <div className="logo">
+         <img src={Logo}/>
+         </div>
          </a>
           <div class="toolbar">
-           <button class="btn btn--primary">Preferences</button>
+          {this.state.loggedin === false &&<button onClick={() => this.openLoginModal()}>Login</button>}
+          {!this.state.loggedin === true &&<button onClick={() => this.openRegistrationModal()}>Registration</button>}
+          {this.state.loggedin === true &&<button onClick={(e)=>this.getLogout(e)}>Logout</button>}
+
             {this.state.currentUser && <div>Logged in as {this.state.currentUser.username}</div>}
-          <div>
-            {!this.state.loggedin === true &&<button onClick={() => this.openRegistrationModal()}>Registration</button>}
+
+
+          </div>
+        </header>
+          <nav class="admin__nav" style={{backgroundImage: "url(" + SideNav + ")"}}>
+           <div className="eventList" >
+            <EventList joinEvent={this.joinEvent} dbEventList={this.state.dbEventList} />
+           </div>
+          </nav>
+           <main className="admin__main" style={{backgroundImage: "url(" + MainNav + ")"}}>
+           <div>
              <Modal  isOpen={this.state.isRegistrationModalOpen} onClose={() => this.closeRegistrationModal()}>
               <p style={{color: 'black'}}>Registration</p>
                <Registration getRegistration={(e)=>this.getRegistration(e)}/>
                 <p><button onClick={() => this.closeRegistrationModal()}>Close</button></p>
                  </Modal>
           </div>
-          <br></br>
             <div>
-             {this.state.loggedin === false &&<button onClick={() => this.openLoginModal()}>Login</button>}
               <Modal isOpen={this.state.isLoginModalOpen} onClose={() => this.closeLoginModal()}>
                <p style={{color: 'black'}}>Log in</p>
                 <Login getLogin={(e)=>this.getLogin(e)}/>
                  <p><button onClick={() => this.closeLoginModal()}>Close</button></p>
               </Modal>
             </div>
-            <br></br>
-              {this.state.loggedin === true &&<button onClick={(e)=>this.getLogout(e)}>Logout</button>}
-          </div>
-        </header>
-          <nav class="admin__nav">
-           <div className="eventList">
-            <EventList dbEventList={this.state.dbEventList}/>
-           </div>
-          </nav>
-           <main className="admin__main">
+
             <div className="dashboard__item dashboard__item--full">
 
                <div >
@@ -307,7 +330,7 @@ handleEventClick = () => {
                   {this.state.create && !this.state.eventName && <Event getEventInput = {(e) => this.getEventInput(e)} restaurant = {this.state.eventRestaurant}/>}
                  </div>
                   <div>
-                   {this.state.eventName && this.state.currentUser && this.state.events && <EventCurrent events={this.state.events} currentUser={this.state.currentUser.username} />}
+                   {this.state.eventName && this.state.currentUser && this.state.events && <EventCurrent events={this.state.events} currentUser={this.state.currentUser.username} joinEvent={this.joinEvent} address={this.state.address} city={this.state.city} state={this.state.state} country={this.state.country} />}
                   </div>
                    <div>
                     {!this.state.create && <Swipes data = {this.state.data} getEventRestaurant = {this.handleGetSwipeIndex} />}

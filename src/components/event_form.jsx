@@ -20,6 +20,7 @@ constructor(props) {
 
 
 
+
 handleFormSubmit = () => {
    console.log('clicked')
    this.setState({
@@ -37,20 +38,36 @@ handleFormSubmit = () => {
 
 
    return (
+    <div className="eventForm">
      <div style={{ display: (this.state.submit ? 'none': 'block')}}>
       <form onSubmit={this.props.getEventInput} >
-      <input type='text' name= 'restaurantName' placeholder="{this.props.restaurant.name}" value={this.props.restaurant.name}/>
-      <input type='text' name= 'restaurantAddress' placeholder="{this.props.restaurant.address}" value={this.props.restaurant.address}/>
-      <input type='text' name= 'eventName' placeholder='Event Name' value={this.props.eventName}/>
+      <input className="eventInfo" type='text' name= 'eventName' placeholder='Event Name' value={this.props.eventName}/>
+      <br></br>
+      <input className="eventInfo" type='text' name= 'restaurantName' placeholder="{this.props.restaurant.name}" value={this.props.restaurant.name}/>
+      <br></br>
+      <input className="eventInfo" type='text' name= 'address' value={this.props.restaurant.address}/>
+      <br></br>
+      <input className="eventInfo" type='text' name= 'city' value={this.props.restaurant.city}/>
+      <br></br>
+      <input className="eventInfo" type='text' name= 'state' value={this.props.restaurant.state}/>
+      <br></br>
+      <input className="eventInfo" type='text' name= 'country' value={this.props.restaurant.country}/>
+      <br></br>
+
       <div>
       <DateTimePicker className="calendar" type='int' name='start' onChange={this.onChange1} returnValue="start" value={this.state.start}/>
       </div>
+      <br></br>
       <div>
       <DateTimePicker className="calendar" type='int' name='end' onChange={this.onChange2} returnValue="end" value={this.state.end} />
       </div>
+      <br></br>
       <input type='text' name= 'description' placeholder='Event Description ' value={this.props.description}/>
+      <br></br>
+      <input className="hiddenRestaurantInfo" type='text' name= 'restaurantAddress' placeholder="{this.props.restaurant.address}" value={this.props.restaurant.addressString}/>
       <button onClick={this.handleFormSubmit}>Create Event</button>
      </form>
+     </div>
      </div>
 
    )

@@ -8,7 +8,7 @@ class Modal extends React.Component {
 
       let modalStyle = {
         position: 'absolute',
-        top: '500%',
+        top: '55%',
         left: '58%',
         transform: 'translate(-50%, -50%)',
         zIndex: '9999',
@@ -24,7 +24,7 @@ class Modal extends React.Component {
       let backdropStyle = {
         position: 'absolute',
         width: '100%',
-        height: '100%',
+        height: '113%',
         top: '0px',
         left: '0px',
         zIndex: '9998',

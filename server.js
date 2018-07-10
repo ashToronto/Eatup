@@ -290,7 +290,11 @@ app.post('/api/search/:category/:radius/:latitude/:longitude', (req, res) => {
            const data = {
             name: business.name,
             image: business.image_url,
-            address: business.location.display_address,
+            addressString: business.location.display_address,
+            address: business.location.address1,
+            city: business.location.city,
+            country: business.location.country,
+            state: business.location.state,
             phone:business.display_phone,
             money: business.price,
             rating: business.rating,
@@ -300,7 +304,7 @@ app.post('/api/search/:category/:radius/:latitude/:longitude', (req, res) => {
            restaurantData.push(data)
 
          })
-
+        console.log(restaurantData)
         res.send(restaurantData);
 
       }).catch(e => {
