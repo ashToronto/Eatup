@@ -4,12 +4,36 @@
   box-sizing: border-box;
 }
 
+.root {
+height: 100%;
+    overflow: auto;
+}
 
 
 body {
 
   overflow-x: hidden;
 }
+
+/*.belowNav {
+  flex: 0 0 300px;
+
+
+  overflow: scroll;
+  max-height:100%;
+   filter: grayscale(35%);
+   max-height: 100%;
+  background-color: #e7e7e7;
+
+  flex: 1;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+
+
+}*/
+
 .admin {
 
   --spacing: 1rem;
@@ -18,7 +42,7 @@ body {
 
 
   grid-template-columns: 300px 1fr;
-  grid-template-areas: "header header" "nav    main" "footer footer";
+  grid-template-areas: "header header" "nav    main" ;
 
 }
 .admin__header {
@@ -36,11 +60,11 @@ body {
 
   overflow: scroll;
   max-height:100%;
-   filter: grayscale(35%);
-}
+ }
+
 .admin__main {
   max-height: 100%;
-  background-color: #e7e7e7;
+
 
   flex: 1;
 
@@ -64,17 +88,7 @@ body {
   width: 100%;
   height: 100%;
 }
-.admin__footer {
-  display: flex;
 
-  flex-basis: 100%;
-  justify-content: space-between;
-  align-items: center;
-  height: 70px;
-  padding: 0 var(--spacing);
-  color: #4e5561;
-  background-color: #1d2127;
-}
 @media screen and (min-width: 48rem) {
   .admin {
     --spacing: 2rem;
@@ -185,10 +199,7 @@ a {
   width:46%;
   height: 40%;
   background-color: #ffff;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin: 15px 220px 20px;
   cursor: grab;
   border-radius: 15px;
 
@@ -209,9 +220,31 @@ a {
   font-size: 18px;
 }
 
-.react-datetime-picker__clock {
- display:none;
- }
+
+
+button.findRest {
+  background: white;
+   border: 2px solid #67b4ba;
+    border-radius: 6px;
+
+      color: black;
+      padding: 16px 32px;
+      text-align: center;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+      cursor: pointer;
+      text-decoration: none;
+      text-transform: uppercase;
+}
+
+button.findRest:hover{
+    background-color: #67b4ba;
+      color: white;
+      border: 2px solid #008CBA;
+}
 
 
 
@@ -236,7 +269,7 @@ width:100%;
 
 
 .restInfo {
-  width:80%;
+  width:90%;
 
   text-align: left;
   margin-left:auto;
@@ -268,32 +301,45 @@ margin-bottom: 7px;
 .getRestaurant {
   text-align: center;
   margin-top: 250px;
+  width:90%;
+
 
 }
 
 .foodtype {
   height:70px;
   font-size: 40px;
-  padding-left: 30px;
-  width: 55%;
-  opacity: .8;
+
+  width: 60%;
+  text-align: center;
   border: 2px solid #67b4ba;
 
   /*border: 2px solid red;*/
 }
 
+
+
 .distance {
+  padding-left: 10px;
   display:block;
-  height:30px;
-  width:120px ;
-  font-size: 20px;
+  height:60px;
+  width:170px ;
+  font-size: 25px;
+  margin-top: 20px;
   margin-left: auto;
   margin-right:auto;
+  background-color: white;
+ border: 2px solid #67b4ba;
+text-align-last:center;
 
  }
 
+ .select option {
+  font-size: 20px;
+ }
+
 .restCard {
-height:650px;
+height:625px;
 opacity:1.0;
 }
 
@@ -337,8 +383,8 @@ opacity:1.0;
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 
-.Collapsible {
-  background-color: #d8d9db;
+.Collapsible.hvr-grow {
+  background-color: #67b4ba;
   margin-bottom: 30px;
   margin-top: 30px;
   width:80%;
@@ -351,24 +397,55 @@ opacity:1.0;
   hyphens: auto;
   border-radius: 5px;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
-  border: 2px solid #67b4ba ;
+  border: 3px solid #67b4ba ;
+
+  opacity: 0.8;
 
 
+}
+
+.Collapsible{
+  background-color: #67b4ba;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  width:80%;
+  font-size: 15px;
+  text-align: center;
+  margin-left:auto;
+  margin-right:auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
+  border: 3px solid #67b4ba ;
+  border-bottom:20px solid #67b4ba ;
+  transition-duration: 0.4s;
+
+
+}
+
+.Collapsible:hover{
+  opacity: 1;
 }
 
 
 
 
 
+
 .Collapsible__contentInner {
-  background-color: #d8d9db;
+  background-color: white;
+  max-width: 94%;
   font-size: 20px;
   text-align: center;
    -webkit-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
-  margin-left:7px;
-  margin-right:7px;
+  border-radius: 5px;
+  opacity: 1;
+  margin:auto;
+
 
 
 
@@ -384,9 +461,28 @@ opacity:1.0;
    .is-open h1 {
     cursor:pointer;
     margin-bottom: 0;
+    -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
    }
 
+/*.hvr-grow {
 
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}*/
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    transform: scale(1.0);
+}
 
 
 
@@ -394,6 +490,7 @@ opacity:1.0;
 
 
 .eventList {
+  margin-top:0px;
   height:100vh;
 }
 
@@ -467,24 +564,30 @@ opacity:1.0;
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
+
+
 }
 
 .ToggleButton {
   text-align: center;
-
-
 }
+
 
 .ToggleButton button {
   width: 100%;
   background-color: #67b4ba;
   height:40px;
-
+  border-top: 1px solid white;
   color:white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .react-datetime-picker {
   margin-top:5px;
+  margin-left: 17px;
+  margin-right: 17px;
 
 }
 
@@ -513,7 +616,7 @@ input.react-datetime-picker__button__input__minute {
 
 .react-datetime-picker__button {
   padding:5px;
-   border: 2px solid #67b4ba;
+
 
 
 }
@@ -522,15 +625,62 @@ input.react-datetime-picker__button__input__minute {
   display:none;
 }
 
+
+.react-datetime-picker__clock {
+ display:none;
+ }
+
+ .react-datetime-picker__calendar {
+  display: none;
+ }
+
+ .react-datetime-picker__button__icon{
+  display: none;
+}
+
+
 textarea.eventDescription {
   border: 2px solid #67b4ba;
   width:80%;
   height:125px;
   font-size: 22px;
   padding:10px;
+  resize: none;
 
 }
 
+.startEnd {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  }
+
+  .startEnd p{
+   word-spacing: 170px;
+   text-decoration-line:underline;
+   text-decoration-color: #67b4ba;
+   margin-top:10px;
+   margin-bottom: 10px;
+  }
+
+  .createEvent {
+    margin-top: 34px;
+   text-align: center;
+  }
+
+  .createEvent button {
+    width: 100%;
+  background-color: #67b4ba;
+  height:40px;
+  border-top: 1px solid white;
+  color:white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  }
+
+  .eventCurrent {
+    text-align: center;
+  }
 /* button {
   border: none;
   outline: 0;
@@ -552,4 +702,7 @@ button:hover, a:hover {
   opacity: 0.7;
 } */
 /* beacon */
+
+
+
 
