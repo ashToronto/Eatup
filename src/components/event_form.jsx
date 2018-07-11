@@ -62,7 +62,7 @@ handleFormSubmit = () => {
       <DateTimePicker className="calendar" type='int' name='end' onChange={this.onChange2} returnValue="end" value={this.state.end} />
       </div>
       <br></br>
-      <input type='text' name= 'description' placeholder='Event Description ' value={this.props.description}/>
+      <textarea className="eventDescription" rows="4" cols="20" maxlength="250" type='text' name= 'description' placeholder='Event Description ' value={this.props.description}/>
       <br></br>
       <input className="hiddenRestaurantInfo" type='text' name= 'restaurantAddress' placeholder="{this.props.restaurant.address}" value={this.props.restaurant.addressString}/>
       <button onClick={this.handleFormSubmit}>Create Event</button>

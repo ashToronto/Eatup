@@ -32,8 +32,8 @@ body {
 }
 .admin__nav {
   flex: 0 0 300px;
-  background-image: url("/public/images/images-1.jpg");
-  background-color: white;
+
+
   overflow: scroll;
   max-height:100%;
    filter: grayscale(35%);
@@ -41,7 +41,7 @@ body {
 .admin__main {
   max-height: 100%;
   background-color: #e7e7e7;
-  background-image: url(/public/images/sidenav.png);
+
   flex: 1;
 
   overflow-y: auto;
@@ -192,13 +192,18 @@ a {
   cursor: grab;
   border-radius: 15px;
 
- /* border: 1px solid black;
-*/
+
   overflow: scroll;
 }
 .profile h3 {
   font-family: 'Quicksand', sans-serif;
 }
+
+.withBorder {
+  border: 1px solid white;
+
+}
+
 .title {
   color: grey;
   font-size: 18px;
@@ -213,7 +218,7 @@ a {
 
  .photo {
   max-width:100%;
-  height:400px;
+  height:350px;
 
   display: block;
   border-bottom: 1px solid black
@@ -239,10 +244,26 @@ width:100%;
 
 }
 
-.restInfo h5 {
-
+.restInfo h2 {
+margin-top: 20px;
+margin-bottom: 7px;
+-webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
 
 }
+
+.restInfo h3 {
+  margin-bottom:10px;
+  margin-top:10px;
+
+}
+
+.restInfo h5 {
+  margin-bottom:10px;
+  margin-top:15px;
+}
+
 
 .getRestaurant {
   text-align: center;
@@ -263,21 +284,58 @@ width:100%;
 
 .distance {
   display:block;
-  height:70px;
+  height:30px;
   width:120px ;
   font-size: 20px;
-  -webkit-appearance: none;
+  margin-left: auto;
+  margin-right:auto;
+
  }
 
 .restCard {
-height:750px;
+height:650px;
 opacity:1.0;
 }
 
  .modal {
   top:400px;
   margin-left: 50%;
+
  }
+
+ /*.insideModal p {
+
+ }*/
+
+ .insideModal {
+  height: 50%;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 35px;
+  text-align: center;
+  border-radius: 15px;
+ }
+
+ .insideModal p {
+  text-decoration: underline;
+ }
+
+ .insideModal input {
+  border: none;
+  border-bottom: 2px solid #67b4ba;
+  outline-width: 0;
+  width: 60%;
+  height: 50px;
+  font-size: 25px;
+  margin-bottom: 10px;
+  background-color : white;
+  outline: none;
+ }
+
+ input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
 
 .Collapsible {
   background-color: #d8d9db;
@@ -295,7 +353,10 @@ opacity:1.0;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
   border: 2px solid #67b4ba ;
 
+
 }
+
+
 
 
 
@@ -316,6 +377,16 @@ opacity:1.0;
   }
 
 
+  .is-closed{
+   cursor:pointer;
+   }
+
+   .is-open h1 {
+    cursor:pointer;
+    margin-bottom: 0;
+   }
+
+
 
 
 
@@ -329,7 +400,7 @@ opacity:1.0;
 
 
 .eventForm {
-  height: 75vh;
+  height: 85vh;
   text-align: center;
 
    cursor:default;
@@ -337,11 +408,13 @@ opacity:1.0;
 
 .eventInfo {
   border: none;
-
+  font-size: 22px;
   width: 80%;
   margin-top: 20px;
   margin-bottom: 10px;
   height:30px;
+  border-bottom: 2px solid #67b4ba;
+
 }
 
 .hiddenRestaurantInfo{
@@ -381,11 +454,82 @@ opacity:1.0;
     position:relative;
 }
 
-.price {
-  float:right;
+.price h5 {
+  margin-top:5px;
+  color:green;
+  font-size:25px;
+
+
 }
 
+.description {
+ background-color: white;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
 
+.ToggleButton {
+  text-align: center;
+
+
+}
+
+.ToggleButton button {
+  width: 100%;
+  background-color: #67b4ba;
+  height:40px;
+
+  color:white;
+}
+
+.react-datetime-picker {
+  margin-top:5px;
+
+}
+
+input.react-datetime-picker__button__input__month {
+  font-size: 20px;
+}
+
+input.react-datetime-picker__button__input__day {
+ font-size: 20px;
+}
+
+input.react-datetime-picker__button__input__year {
+ font-size: 20px;
+
+}
+
+input.react-datetime-picker__button__input__hour {
+   font-size: 20px;
+
+}
+
+input.react-datetime-picker__button__input__minute {
+   font-size: 20px;
+
+}
+
+.react-datetime-picker__button {
+  padding:5px;
+   border: 2px solid #67b4ba;
+
+
+}
+
+.react-datetime-picker__clear-button {
+  display:none;
+}
+
+textarea.eventDescription {
+  border: 2px solid #67b4ba;
+  width:80%;
+  height:125px;
+  font-size: 22px;
+  padding:10px;
+
+}
 
 /* button {
   border: none;

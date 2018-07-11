@@ -277,6 +277,8 @@ handleEventClick = () => {
   render() {
     {this.geoFindMe()}
 
+    const profileClass = this.state.category ? "profile withBorder" : "profile";
+
     return (
       <body>
        <div class="admin">
@@ -291,7 +293,7 @@ handleEventClick = () => {
           {!this.state.loggedin === true &&<button onClick={() => this.openRegistrationModal()}>Registration</button>}
           {this.state.loggedin === true &&<button onClick={(e)=>this.getLogout(e)}>Logout</button>}
 
-            {this.state.currentUser && <div>Logged in as {this.state.currentUser.username}</div>}
+            {this.state.currentUser && <div>{this.state.currentUser.username}</div>}
 
 
           </div>
@@ -304,14 +306,14 @@ handleEventClick = () => {
            <main className="admin__main" style={{backgroundImage: "url(" + MainNav + ")"}}>
            <div>
              <Modal  isOpen={this.state.isRegistrationModalOpen} onClose={() => this.closeRegistrationModal()}>
-              <p style={{color: 'black'}}>Registration</p>
+              <p>Registration</p>
                <Registration getRegistration={(e)=>this.getRegistration(e)}/>
                 <p><button onClick={() => this.closeRegistrationModal()}>Close</button></p>
                  </Modal>
           </div>
             <div>
               <Modal isOpen={this.state.isLoginModalOpen} onClose={() => this.closeLoginModal()}>
-               <p style={{color: 'black'}}>Log in</p>
+               <p>Log in</p>
                 <Login getLogin={(e)=>this.getLogin(e)}/>
                  <p><button onClick={() => this.closeLoginModal()}>Close</button></p>
               </Modal>
@@ -324,7 +326,7 @@ handleEventClick = () => {
                 </div>
 
 
-               <div class="profile">
+               <div className={profileClass}>
 
                  <div>
                   {this.state.create && !this.state.eventName && <Event getEventInput = {(e) => this.getEventInput(e)} restaurant = {this.state.eventRestaurant}/>}

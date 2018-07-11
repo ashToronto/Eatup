@@ -13,6 +13,7 @@ class Modal extends React.Component {
         transform: 'translate(-50%, -50%)',
         zIndex: '9999',
         background: '#fff'
+
       }
 
       if (this.props.style) {
@@ -40,7 +41,7 @@ class Modal extends React.Component {
       return (
         <div className="modal">
         <div className={this.props.containerClassName}>
-          <div className={this.props.className} style={modalStyle}>
+          <div className="insideModal" style={modalStyle}>
             {this.props.children}
           </div>
           {!this.props.noBackdrop &&

@@ -71,13 +71,15 @@ render() {
 
             <Collapsible trigger={<h1>{event.event_name}</h1>} key={idx}>
             <div>
+
             <h4>{event.restaurant_name}</h4>
             <p>{event.restaurant_address}</p>
+            <p className="description">{event.description}</p>
             <h5>Start</h5>
             <p>{event.event_start}</p>
             <h5>End</h5>
             <p>{event.event_end}</p>
-            <p>{event.description}</p>
+
             <button>Join Event</button>
             <button>Leave Event</button>
             </div>

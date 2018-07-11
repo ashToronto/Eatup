@@ -8,7 +8,7 @@ class Form extends React.Component {
        <form onSubmit= {this.props.getUserInput}>
        <input className="foodtype" type='text' name= 'category' placeholder='What are you in the mood for ?'/>
          <select className="distance" type='int' name='radius' required='required'>
-             <option value="none" selected>-Distance-</option>
+             <option value="none" selected> Distance</option>
              <option value="500">Half a km</option>
              <option value="1000">1 km</option>
              <option value="1500">1.5 km</option>
