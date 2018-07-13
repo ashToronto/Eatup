@@ -7,6 +7,7 @@ A single page application that helps you decide where to eat depending on where 
 2. npm install dependencies.
 3. sign up for a developer api key for yelp.
 4. insert that dev api key into .env folder.
+5. run on localhost:3000
 
 
 ## Screenshots
@@ -45,3 +46,8 @@ A single page application that helps you decide where to eat depending on where 
 2.food searches might return null due to yelp food categories.
 3.picking first restaurant will result in location not appearing in event confirm.
 
+## Project Devs
+Nolan Hardin
+Ram Sayoa
+Ashwin Khanna
+Anisa Thomas 
