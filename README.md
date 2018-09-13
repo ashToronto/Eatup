@@ -14,6 +14,10 @@ A single page application that helps you decide where to eat depending on where 
 !["Main Page registration"](https://github.com/ashToronto/Eatup/blob/master/docs/Screen%20Shot%202018-07-13%20at%201.36.05%20PM.png?raw=true)
 !["Swipe card with restaurants"](https://github.com/ashToronto/Eatup/blob/master/docs/Screen%20Shot%202018-07-13%20at%201.35.25%20PM.png?raw=true)
 !["Form submission for event creation"](https://github.com/ashToronto/Eatup/blob/master/docs/Screen%20Shot%202018-07-13%20at%201.37.35%20PM.png?raw=true)
+!["Form submission for event creation"](https://github.com/ashToronto/Eatup/blob/master/docs/Screen%20Shot%202018-07-13%20at%201.40.18%20PM.png?raw=true)
+!["Form submission for event creation"](https://github.com/ashToronto/Eatup/blob/master/docs/Screen%20Shot%202018-07-13%20at%201.40.26%20PM.png?raw=true)
+
+
 
 ## Dependencies
     "body-parser": "^1.18.3",
